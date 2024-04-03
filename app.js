@@ -29,6 +29,7 @@ const myTotalTimeLabel = document.querySelector(".totaltime")
 const songNameLabel = document.querySelector("#songname")
 const songAlbumLabel = document.querySelector("#songalbum")
 const songImage = document.querySelector("#songimage")
+const songProgressBar = document.querySelector(".progresschild")
 
 var shouldPlay = true
 var currentSongIndex = 0
@@ -73,6 +74,9 @@ myAudioFile.addEventListener("timeupdate", function (event) {
         currentTimeInSec = `0${currentTimeInSec}`
     }
     myCurrentTimeLabel.textContent = `${currentTimeInMin}:${currentTimeInSec}`
+
+    let progress = Math.floor((event.srcElement.currentTime / event.srcElement.duration) * 100) 
+    songProgressBar.style.width =  progress + "%";
 })
 
 myForwardButton.addEventListener("click", function () {
@@ -96,10 +100,3 @@ myBackwardButton.addEventListener("click", function () {
 myShuffleButton.addEventListener("click", function () {
     alert("Feature will be available soon..");
 })
-
-function showMessage() {
-    console.log("showMessage")
-    var dialog = document.createElement("dialog");
-    dialog.innerHTML = "This is a message box.";
-    dialog.show();
-}
