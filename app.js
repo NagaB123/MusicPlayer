@@ -24,6 +24,7 @@ const myplayButton = document.querySelector("#play")
 const myForwardButton = document.querySelector("#forward")
 const myBackwardButton = document.querySelector("#backward")
 const myShuffleButton = document.querySelector("#shuffle")
+const myFavButton = document.querySelector("#favourite")
 const myCurrentTimeLabel = document.querySelector(".currenttime")
 const myTotalTimeLabel = document.querySelector(".totaltime")
 const songNameLabel = document.querySelector("#songname")
@@ -77,6 +78,9 @@ myAudioFile.addEventListener("timeupdate", function (event) {
 
     let progress = Math.floor((event.srcElement.currentTime / event.srcElement.duration) * 100) 
     songProgressBar.style.width =  progress + "%";
+    if(progress == 100) {
+        myplayButton.classList.replace("fa-pause", "fa-play")
+    }
 })
 
 myForwardButton.addEventListener("click", function () {
@@ -98,5 +102,9 @@ myBackwardButton.addEventListener("click", function () {
 })
 
 myShuffleButton.addEventListener("click", function () {
+    alert("Feature will be available soon..");
+})
+
+myFavButton.addEventListener("click", function () {
     alert("Feature will be available soon..");
 })
