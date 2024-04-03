@@ -22,6 +22,8 @@ const songsData = [
 const myAudioFile = document.querySelector("audio")
 const myplayButton = document.querySelector("#play")
 const myForwardButton = document.querySelector("#forward")
+const myBackwardButton = document.querySelector("#backward")
+const myShuffleButton = document.querySelector("#shuffle")
 const myCurrentTimeLabel = document.querySelector(".currenttime")
 const myTotalTimeLabel = document.querySelector(".totaltime")
 const songNameLabel = document.querySelector("#songname")
@@ -29,7 +31,7 @@ const songAlbumLabel = document.querySelector("#songalbum")
 const songImage = document.querySelector("#songimage")
 
 var shouldPlay = true
-var currentSongIndex = -1
+var currentSongIndex = 0
 
 function playAudio() {
     myAudioFile.play()
@@ -42,11 +44,6 @@ function pauseAudio() {
 }
 
 function LoadSong(songInfo) {
-    console.log(songInfo)
-
-    if(currentSongIndex >= songsData.length - 1) {
-        currentSongIndex = -1;
-    }
     songNameLabel.textContent = songInfo.songName
     songAlbumLabel.textContent = songInfo.Album
     songImage.src = `images/${songInfo.imageFile}`
@@ -80,5 +77,29 @@ myAudioFile.addEventListener("timeupdate", function (event) {
 
 myForwardButton.addEventListener("click", function () {
     currentSongIndex++;
-    LoadSong(songsData[currentSongIndex])
+    if (currentSongIndex === songsData.length) {
+        currentSongIndex = 0;
+    }
+    let songInfo = songsData[currentSongIndex]
+    LoadSong(songInfo)
 })
+
+myBackwardButton.addEventListener("click", function () {
+    currentSongIndex--;
+    if (currentSongIndex === -1) {
+        currentSongIndex = songsData.length - 1;
+    }
+    let songInfo = songsData[currentSongIndex]
+    LoadSong(songInfo)
+})
+
+myShuffleButton.addEventListener("click", function () {
+    alert("Feature will be available soon..");
+})
+
+function showMessage() {
+    console.log("showMessage")
+    var dialog = document.createElement("dialog");
+    dialog.innerHTML = "This is a message box.";
+    dialog.show();
+}
